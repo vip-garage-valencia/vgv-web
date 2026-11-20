@@ -1,0 +1,87 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Pedido a la carta · VCV Vip Cars Valencia</title>
+<meta name="description" content="Dinos qué coche alemán quieres y tu presupuesto. Te buscamos 5 o 6 opciones reales en Alemania.">
+<meta name="theme-color" content="#1C1E21">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="manifest" href="manifest.webmanifest">
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@100..125,400..800&family=JetBrains+Mono:wght@400;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<main class="wrap" style="max-width:880px;padding-top:40px;padding-bottom:70px">
+  <div class="eyebrow">Pedido a la carta</div>
+  <h1 style="font-size:clamp(32px,5vw,54px)">Dinos qué coche quieres</h1>
+  <p class="lead">Te buscamos en Alemania entre 5 y 6 opciones reales que encajen. Pedir es gratis y sin compromiso: solo pagas los servicios que elijas después.</p>
+
+  <div class="plate rivets" style="padding:26px 24px;margin-top:26px" id="box">
+    <div class="sheet-head mono dim" style="display:flex;justify-content:space-between;font-size:12px;letter-spacing:.1em;margin-bottom:14px;padding:0 6px"><span>FICHA DE ENCARGO</span><span>Nº PENDIENTE</span></div>
+    <div class="stepper"><span class="on">1 · Coche</span><span>2 · Presupuesto y entrega</span><span>3 · Contacto</span></div>
+    <form class="form" id="f" novalidate>
+      <div class="form-step" data-step="1">
+        <div class="field"><span class="label">Tipo de carrocería</span><div class="chips" data-key="body_types"></div></div>
+        <div class="field"><span class="label">Marca</span><div class="chips" data-key="makes"></div></div>
+        <div class="row2">
+          <div class="field"><label for="model">Modelo</label><select id="model" name="model"></select></div>
+          <div class="field"><span class="label">Cambio</span><div class="chips" data-key="gearboxes"></div></div>
+        </div>
+        <div class="row2">
+          <div class="field"><label for="year_min">Año desde</label><select id="year_min" name="year_min"></select></div>
+          <div class="field"><label for="year_max">Año hasta</label><select id="year_max" name="year_max"></select></div>
+        </div>
+        <div class="field"><div class="flabel"><label for="km_max">Kilómetros máximos</label><output id="o-km"></output></div><input type="range" id="km_max" name="km_max" min="10000" max="200000" step="5000"></div>
+        <div class="field"><span class="label">Combustible</span><div class="chips" data-key="fuels"></div></div>
+        <div class="row2">
+          <div class="field"><label for="cv_min">Potencia mínima</label><select id="cv_min" name="cv_min"></select></div>
+          <div class="field"><label for="cv_max">Potencia máxima</label><select id="cv_max" name="cv_max"></select></div>
+        </div>
+        <div class="field"><span class="label">Color</span><div class="swatches" data-key="colors"></div><div class="hint">Sin marcar = indiferente.</div></div>
+      </div>
+
+      <div class="form-step" data-step="2" hidden>
+        <div class="field">
+          <div class="flabel"><span>Presupuesto (precio final en España)</span><output id="o-price"></output></div>
+          <div class="dual"><input type="range" id="p-min" min="10000" max="150000" step="1000" aria-label="Mínimo"><input type="range" id="p-max" min="10000" max="150000" step="1000" aria-label="Máximo"></div>
+          <div class="row2" style="margin-top:8px"><input type="number" id="n-min" name="price_min" step="500" aria-label="Mínimo en euros"><input type="number" id="n-max" name="price_max" step="500" aria-label="Máximo en euros"></div>
+        </div>
+        <div class="row2">
+          <div class="field"><label for="city">Ciudad de entrega</label><select id="city" name="delivery_city"></select></div>
+          <div class="field"><label for="timeline">¿Cuándo lo necesitas?</label>
+            <select id="timeline" name="timeline"><option>Lo antes posible</option><option selected>En 1–3 meses</option><option>Solo estoy mirando</option></select></div>
+        </div>
+        <div class="field"><label for="must_have">Imprescindibles</label><textarea id="must_have" name="must_have" placeholder="Ej.: techo panorámico, gancho de remolque, paquete M, asientos calefactados…"></textarea></div>
+        <div class="field"><span class="label">Servicios que te interesan</span>
+          <div class="form" style="gap:8px">
+            <label class="check"><input type="checkbox" name="services" value="inspeccion" checked> Inspección en Alemania (200 puntos, prueba de manejo, historial)</label>
+            <label class="check"><input type="checkbox" name="services" value="gestion" checked> Gestión de importación y matrícula</label>
+            <label class="check"><input type="checkbox" name="services" value="traslado" checked> Traslado hasta mi ciudad</label>
+          </div>
+          <div class="hint">Lo eliges con precios exactos cuando veas las propuestas.</div>
+        </div>
+      </div>
+
+      <div class="form-step" data-step="3" hidden>
+        <div class="row2"><div class="field"><label for="name">Nombre y apellidos</label><input id="name" name="name" type="text" autocomplete="name" required></div>
+        <div class="field"><label for="email">Email</label><input id="email" name="email" type="email" autocomplete="email" required></div></div>
+        <div class="field"><label for="phone">Teléfono / WhatsApp</label><input id="phone" name="phone" type="tel" autocomplete="tel"></div>
+        <div class="field"><label for="message">¿Algo más?</label><textarea id="message" name="message"></textarea></div>
+        <input class="hp" name="website_hp" tabindex="-1" autocomplete="off" aria-hidden="true">
+        <label class="check"><input type="checkbox" name="whatsapp_ok" checked> Podéis escribirme por WhatsApp.</label>
+        <label class="check"><input type="checkbox" name="gdpr_consent"> Acepto la <a href="legal.html#privacidad" target="_blank">política de privacidad</a> y que VCV trate mis datos para gestionar mi pedido.</label>
+        <label class="check"><input type="checkbox" name="marketing_consent"> Quiero recibir ofertas por email.</label>
+        <div class="plate" style="padding:14px 16px" id="summary"></div>
+      </div>
+      <div id="msg"></div>
+      <div class="form-nav">
+        <button type="button" class="btn ghost" id="prev" hidden>← Atrás</button>
+        <button type="button" class="btn" id="next" style="margin-left:auto">Siguiente →</button>
+      </div>
+    </form>
+  </div>
+</main>
+<script type="module" src="pedido.js"></script>
+</body>
+</html>

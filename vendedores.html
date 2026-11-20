@@ -1,0 +1,62 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Para concesionarios · Für Händler · VCV</title>
+<meta name="theme-color" content="#1C1E21">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@100..125,400..800&family=JetBrains+Mono:wght@400;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<main class="wrap" style="max-width:960px;padding-top:40px;padding-bottom:70px">
+  <div class="eyebrow">Concesionarios · Händler · Dealers</div>
+  <h1 style="font-size:clamp(30px,4.6vw,50px)">Vende en España sin moverte de Alemania</h1>
+  <p class="lead">VCV lleva compradores españoles a concesionarios y agencias alemanas. Nosotros inspeccionamos, gestionamos la exportación y el transporte. Tú vendes.</p>
+  <p class="lead dim" lang="de" style="font-size:16px">Verkaufen Sie nach Spanien, ohne Aufwand: Wir bringen geprüfte Käufer, übernehmen Inspektion, Export und Transport.</p>
+
+  <div class="paths" style="margin:26px 0">
+    <div class="path plate rivets"><h3>Cómo funciona</h3>
+      <ul><li>Te das de alta y verificamos tu empresa.</li><li>Cargas tus coches, uno a uno o por CSV.</li><li>Revisamos cada coche antes de publicarlo con precio final en España.</li><li>Cuando un cliente reserva, te avisamos y vamos a inspeccionarlo.</li></ul></div>
+    <div class="path plate rivets"><h3 lang="de">So funktioniert's</h3>
+      <ul lang="de"><li>Registrierung und Prüfung Ihres Betriebs.</li><li>Fahrzeuge einzeln oder per CSV hochladen.</li><li>Wir prüfen jedes Angebot vor der Veröffentlichung.</li><li>Bei einer Reservierung melden wir uns und besichtigen das Fahrzeug.</li></ul></div>
+  </div>
+
+  <div class="plate rivets" style="padding:26px 24px" id="box">
+    <h2 style="font-size:26px">Solicitar alta · Anfrage</h2>
+    <form class="form" id="f" novalidate>
+      <div class="row2"><div class="field"><label for="company">Empresa · Firma</label><input id="company" name="company" required></div>
+      <div class="field"><label for="contact_name">Contacto · Ansprechpartner</label><input id="contact_name" name="contact_name"></div></div>
+      <div class="row2"><div class="field"><label for="email">Email</label><input id="email" name="email" type="email" required></div>
+      <div class="field"><label for="phone">Teléfono · Telefon</label><input id="phone" name="phone" type="tel"></div></div>
+      <div class="row2"><div class="field"><label for="city">Ciudad · Stadt</label><input id="city" name="city"></div>
+      <div class="field"><label for="country">País · Land</label><select id="country" name="country"><option value="DE">Deutschland</option><option value="AT">Österreich</option><option value="NL">Nederland</option><option value="BE">Belgique</option><option value="ES">España</option></select></div></div>
+      <div class="row2"><div class="field"><label for="website">Web</label><input id="website" name="website" type="url" placeholder="https://"></div>
+      <div class="field"><label for="stock_size">Coches en stock · Bestand</label><select id="stock_size" name="stock_size"><option>1–20</option><option>21–100</option><option>100+</option></select></div></div>
+      <div class="field"><label for="message">Mensaje · Nachricht</label><textarea id="message" name="message"></textarea></div>
+      <input class="hp" name="website_hp" tabindex="-1" autocomplete="off" aria-hidden="true">
+      <label class="check"><input type="checkbox" name="gdpr_consent"> Acepto la <a href="legal.html#privacidad" target="_blank">política de privacidad</a> · Ich akzeptiere die Datenschutzerklärung.</label>
+      <div id="msg"></div>
+      <button class="btn" type="submit">Enviar · Senden <span class="arrow">→</span></button>
+    </form>
+  </div>
+</main>
+<script type="module">
+import { mountLayout, $, esc } from './layout.js';
+import { submit } from './api.js';
+mountLayout({ active: 'Vendedores' });
+$('#f').addEventListener('submit', async (e) => {
+  e.preventDefault();
+  const fd = new FormData(e.target); const msg = $('#msg');
+  if (!fd.get('company') || !/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(fd.get('email') || '')) { msg.innerHTML = '<div class="alert err">Empresa y email son obligatorios · Firma und E-Mail sind Pflichtfelder.</div>'; return; }
+  if (!fd.get('gdpr_consent')) { msg.innerHTML = '<div class="alert err">Acepta la política de privacidad · Bitte Datenschutz akzeptieren.</div>'; return; }
+  const btn = e.target.querySelector('button[type=submit]'); btn.disabled = true;
+  try {
+    await submit('vendedor', { ...Object.fromEntries(fd), gdpr_consent: true });
+    $('#box').innerHTML = '<div class="alert ok"><b>¡Gracias! · Vielen Dank!</b><br>Te contactamos en 48 h · Wir melden uns innerhalb von 48 Stunden.</div>';
+  } catch (err) { msg.innerHTML = `<div class="alert err">${esc(err.message)}</div>`; btn.disabled = false; }
+});
+</script>
+</body>
+</html>

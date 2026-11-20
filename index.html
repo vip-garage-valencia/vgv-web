@@ -1,0 +1,200 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>VCV · Vip Cars Valencia — Coches alemanes a la carta</title>
+<meta name="description" content="Mercedes-Benz, Audi y BMW de Alemania, inspeccionados en 200 puntos, importados y entregados matriculados en tu ciudad. Precio final en España y ahorro a la vista.">
+<meta property="og:title" content="VCV · Coches alemanes a la carta">
+<meta property="og:description" content="Ofertas reales de Alemania con precio final en España, o te buscamos el coche que quieres.">
+<meta name="theme-color" content="#1C1E21">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@100..125,400..800&family=JetBrains+Mono:wght@400;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<main>
+  <section class="hero">
+    <div class="wrap hero-grid">
+      <div>
+        <div class="eyebrow">Importación de coches alemanes · España</div>
+        <h1>Tu coche alemán,<br><span class="copper">a la carta.</span></h1>
+        <p class="lead">Mercedes-Benz, Audi y BMW de Alemania con pocos kilómetros y mantenimiento al día. Los inspeccionamos allí, los importamos y te los entregamos matriculados en tu ciudad. Siempre con el precio final en España.</p>
+        <div class="hero-ctas">
+          <a class="btn" href="#ofertas">Ver ofertas <span class="arrow">→</span></a>
+          <a class="btn ghost" href="pedido.html">Búscame un coche</a>
+        </div>
+        <div class="specs-strip">
+          <div><b>200</b><span>puntos de inspección</span></div>
+          <div><b id="hero-save">−15%</b><span>vs. precio en España</span></div>
+          <div><b>0</b><span>trámites para ti</span></div>
+        </div>
+      </div>
+      <div class="plate rivets order-sheet" aria-label="Ejemplo de ficha de encargo">
+        <div class="sheet-head"><span>FICHA DE ENCARGO</span><span>Nº VCV-0042</span></div>
+        <div id="hero-art" style="border:1px solid var(--line);border-radius:3px;overflow:hidden"></div>
+        <dl>
+          <dt>Pedido</dt><dd>BMW Serie 3 Touring · híbrido</dd>
+          <dt>Presupuesto</dt><dd class="mono">35.000 – 45.000 €</dd>
+          <dt>Entrega</dt><dd>Valencia</dd>
+          <dt>Inspección</dt><dd><span class="stamp ok">Apto · 200/200</span></dd>
+        </dl>
+      </div>
+    </div>
+  </section>
+
+  <section id="ofertas" class="blueprint">
+    <div class="wrap">
+      <div class="section-head">
+        <div>
+          <div class="eyebrow">Ofertas verificadas</div>
+          <h2>Elige o encarga</h2>
+          <p class="muted">Coches reales en venta en Alemania, con el precio final puesto en España: inspección, importación, matrícula y traslado incluidos.</p>
+        </div>
+        <button class="btn ghost small mobile-filter-btn" id="open-filters">Filtros</button>
+      </div>
+      <div class="finder">
+        <aside class="filters plate" id="filters" aria-label="Filtros">
+          <h3>Tu pedido <button class="btn ghost small close-filters" id="close-filters">Cerrar</button></h3>
+          <div class="fgroup"><div class="flabel">Tipo</div><div class="chips" data-key="body_types"></div></div>
+          <div class="fgroup"><div class="flabel">Marca</div><div class="chips" data-key="makes"></div></div>
+          <div class="fgroup"><div class="flabel"><label for="f-model">Modelo</label></div><select id="f-model"><option value="">Todos los modelos</option></select></div>
+          <div class="fgroup">
+            <div class="flabel">Precio final <output id="o-price"></output></div>
+            <div class="dual"><input type="range" id="f-pmin" min="10000" max="150000" step="1000" aria-label="Precio mínimo"><input type="range" id="f-pmax" min="10000" max="150000" step="1000" aria-label="Precio máximo"></div>
+            <div class="row2" style="margin-top:8px"><input type="number" id="n-pmin" inputmode="numeric" aria-label="Precio mínimo en euros" step="500"><input type="number" id="n-pmax" inputmode="numeric" aria-label="Precio máximo en euros" step="500"></div>
+          </div>
+          <div class="fgroup"><div class="flabel">Año</div>
+            <div class="row2"><select id="f-ymin" aria-label="Año desde"></select><select id="f-ymax" aria-label="Año hasta"></select></div></div>
+          <div class="fgroup"><div class="flabel">Km máximo <output id="o-km"></output></div><input type="range" id="f-km" min="10000" max="200000" step="5000" aria-label="Kilómetros máximos"></div>
+          <div class="fgroup"><div class="flabel">Combustible</div><div class="chips" data-key="fuels"></div></div>
+          <div class="fgroup"><div class="flabel">Motorización (CV)</div>
+            <div class="row2"><select id="f-cvmin" aria-label="Potencia mínima"></select><select id="f-cvmax" aria-label="Potencia máxima"></select></div></div>
+          <div class="fgroup"><div class="flabel">Cambio</div><div class="chips" data-key="gearboxes"></div></div>
+          <div class="fgroup"><div class="flabel">Color</div><div class="swatches" data-key="colors"></div></div>
+          <div class="fgroup"><button class="btn ghost small block" id="reset">Limpiar filtros</button></div>
+          <div class="filters-apply"><button class="btn block" id="apply-filters">Ver resultados</button></div>
+        </aside>
+        <div>
+          <div class="results-bar">
+            <span class="count" id="count">Cargando…</span>
+            <label class="dim" style="font-size:13px">Ordenar
+              <select id="sort">
+                <option value="savings">Mayor ahorro</option>
+                <option value="price_asc">Precio más bajo</option>
+                <option value="price_desc">Precio más alto</option>
+                <option value="km">Menos kilómetros</option>
+                <option value="year">Más nuevos</option>
+              </select></label>
+          </div>
+          <div class="grid" id="results" aria-live="polite"></div>
+          <div class="cta-bar">
+            <p><b>¿No está tu coche?</b> Con estos mismos filtros te buscamos entre 5 y 6 opciones reales en Alemania. Sin compromiso.</p>
+            <a class="btn" id="to-order" href="pedido.html">Quiero que me busquéis este coche <span class="arrow">→</span></a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="como-funciona">
+    <div class="wrap">
+      <div class="eyebrow">Cómo funciona</div>
+      <h2>De Alemania a tu puerta</h2>
+      <div class="steps" style="margin-top:24px">
+        <div class="step plate"><div class="n">01</div><h3>Eliges o encargas</h3><p>Reserva una oferta o pídenos el coche con tus filtros y tu presupuesto.</p></div>
+        <div class="step plate"><div class="n">02</div><h3>Lo inspeccionamos</h3><p>Revisión de 200 puntos en Alemania, prueba de manejo e historial. Te enviamos el informe.</p></div>
+        <div class="step plate"><div class="n">03</div><h3>Lo compramos por ti</h3><p>Solo si el coche es apto y tú das el visto bueno. Contrato y papeles alemanes en regla.</p></div>
+        <div class="step plate"><div class="n">04</div><h3>Lo importamos</h3><p>ITV de importación, impuesto de matriculación, DGT y placas españolas.</p></div>
+        <div class="step plate"><div class="n">05</div><h3>Te lo entregamos</h3><p>En camión o conducido, en la ciudad que elijas, listo para circular.</p></div>
+      </div>
+      <div class="paths" style="margin-top:26px">
+        <div class="path plate rivets">
+          <div class="eyebrow">Opción A</div><h3>Ofertas: precio cerrado</h3>
+          <ul><li>Coches ya localizados y con disponibilidad verificada.</li><li>Precio final en España todo incluido: inspección, importación, matrícula y traslado.</li><li>Ves cuánto ahorras frente al mismo coche aquí.</li></ul>
+          <a class="btn ghost small" href="#ofertas">Ver ofertas</a>
+        </div>
+        <div class="path plate rivets">
+          <div class="eyebrow">Opción B</div><h3>A la carta: te lo buscamos</h3>
+          <ul><li>Nos dices marca, modelo, año, km, color, motor y precio.</li><li>Te enviamos 5 o 6 opciones reales en Alemania.</li><li>Eliges y contratas solo los servicios que necesitas.</li></ul>
+          <a class="btn ghost small" href="pedido.html">Hacer mi pedido</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="servicios" class="blueprint">
+    <div class="wrap">
+      <div class="eyebrow">Servicios a la carta</div>
+      <h2>Paga solo lo que necesitas</h2>
+      <p class="muted">Para pedidos a la carta. En las ofertas ya van incluidos en el precio final.</p>
+      <div class="services" style="margin-top:24px">
+        <div class="service plate rivets">
+          <div class="num">01 · INSPECCIÓN EN ALEMANIA</div>
+          <h3>Sabes lo que compras antes de pagar</h3>
+          <ul class="pricelist" id="sv-insp"></ul>
+          <p class="dim" style="font-size:13px;margin:0">Informe PDF con fotos, lecturas de pintura, diagnosis OBD y veredicto.</p>
+        </div>
+        <div class="service plate rivets">
+          <div class="num">02 · IMPORTACIÓN Y MATRÍCULA</div>
+          <h3>Todo el papeleo, de principio a fin</h3>
+          <ul class="pricelist" id="sv-gest"></ul>
+          <p class="dim" style="font-size:13px;margin:0">Compra y papeles alemanes, verificación e ITV de importación, impuesto de matriculación (Modelo 576), DGT y placas. Impuestos y tasas, al coste y con justificante.</p>
+        </div>
+        <div class="service plate rivets">
+          <div class="num">03 · TRASLADO</div>
+          <h3>Hasta tu ciudad</h3>
+          <div class="form" style="gap:8px">
+            <div class="row2">
+              <input type="number" id="tq-price" value="35000" step="1000" aria-label="Precio del coche en euros">
+              <select id="tq-size" aria-label="Tamaño del coche"><option value="compacto">Compacto</option><option value="medio" selected>Berlina / SUV medio</option><option value="grande">SUV grande</option></select>
+            </div>
+            <select id="tq-city" aria-label="Ciudad de entrega"></select>
+          </div>
+          <ul class="pricelist" id="sv-tras"></ul>
+          <p class="dim" style="font-size:13px;margin:0">Conducido: un conductor profesional lo trae por carretera. Suma unos 2.000 km al marcador.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="informe">
+    <div class="wrap report">
+      <div>
+        <div class="eyebrow">El informe de 200 puntos</div>
+        <h2>Nada de sorpresas</h2>
+        <p class="lead">Muchos usados importados llegan con daños o kilómetros que nadie explicó. Por eso revisamos cada coche en persona, en Alemania, antes de que pagues. Si no supera la inspección, pasamos a la siguiente opción.</p>
+      </div>
+      <div class="plate" style="padding:22px">
+        <div class="bars">
+          <div class="bar"><span>Motor y transmisión</span><div class="track"><div class="fill" style="width:84%"></div></div><b>42</b></div>
+          <div class="bar"><span>Carrocería y pintura</span><div class="track"><div class="fill" style="width:76%"></div></div><b>38</b></div>
+          <div class="bar"><span>Chasis y frenos</span><div class="track"><div class="fill" style="width:60%"></div></div><b>30</b></div>
+          <div class="bar"><span>Electrónica y OBD</span><div class="track"><div class="fill" style="width:56%"></div></div><b>28</b></div>
+          <div class="bar"><span>Interior y confort</span><div class="track"><div class="fill" style="width:48%"></div></div><b>24</b></div>
+          <div class="bar"><span>Neumáticos y llantas</span><div class="track"><div class="fill" style="width:32%"></div></div><b>16</b></div>
+          <div class="bar"><span>Documentación e historial</span><div class="track"><div class="fill" style="width:44%"></div></div><b>22</b></div>
+        </div>
+        <p class="dim mono" style="font-size:12px;margin:14px 0 0;text-align:right">TOTAL · 200 PUNTOS</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="faq" class="blueprint">
+    <div class="wrap" style="max-width:860px">
+      <div class="eyebrow">Preguntas frecuentes</div>
+      <h2>Lo que nos preguntan</h2>
+      <details><summary>¿Es legal comprar un coche en Alemania y matricularlo en España?</summary><p>Sí. Es una compra dentro de la Unión Europea: no hay aduana ni aranceles. Hay que pasar la ITV de importación, pagar el impuesto de matriculación y tramitar la matrícula en la DGT. De eso nos encargamos nosotros.</p></details>
+      <details><summary>¿Por qué es más barato en Alemania?</summary><p>Alemania tiene el mayor mercado de coches de ocasión de Europa y mucha rotación de coches de empresa, leasing y renting con pocos años y mantenimiento en concesionario oficial.</p></details>
+      <details><summary>¿Qué incluye el precio final de una oferta?</summary><p>El precio del vendedor, nuestro honorario, la inspección, la gestión de importación y matrícula, el traslado en camión y la estimación del impuesto de matriculación. El impuesto exacto lo fija Hacienda con sus tablas; te damos el presupuesto cerrado tras la inspección.</p></details>
+      <details><summary>¿Quién me vende el coche y qué garantía tiene?</summary><p>El vendedor es el concesionario o particular alemán; VCV actúa como intermediario y gestor. Priorizamos concesionarios, que en Alemania deben dar garantía legal. Te informamos de la garantía de cada coche antes de comprar.</p></details>
+      <details><summary>¿Cuánto tarda?</summary><p>Lo habitual son entre 3 y 6 semanas desde la reserva hasta la entrega, según la inspección, el transporte y las citas de ITV y DGT.</p></details>
+      <details><summary>¿Tengo que pagar todo por adelantado?</summary><p>No. Reservas con una señal; el coche solo se paga cuando ha superado la inspección y tú das el visto bueno.</p></details>
+    </div>
+  </section>
+</main>
+<script type="module" src="home.js"></script>
+</body>
+</html>

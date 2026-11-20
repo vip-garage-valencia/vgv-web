@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 342 116" role="img" aria-label="VCV">
+  <g stroke="#8A8F96" stroke-width="7" stroke-linejoin="miter" fill="#D9773F">
+    <polygon points="6,8 38,8 58,72 78,8 110,8 74,108 42,108"/>
+    <polygon points="232,8 264,8 284,72 304,8 336,8 300,108 268,108"/>
+  </g>
+  <path d="M205 26 A42 42 0 1 0 205 90" fill="none" stroke="#8A8F96" stroke-width="34"/>
+  <path d="M205 26 A42 42 0 1 0 205 90" fill="none" stroke="#D9773F" stroke-width="20"/>
+</svg>
