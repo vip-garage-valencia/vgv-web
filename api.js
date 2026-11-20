@@ -65,7 +65,7 @@ export async function listZones() {
 function demoCode() {
   const n = (store.get('vcv_demo_seq') || 41) + 1;
   store.set('vcv_demo_seq', n);
-  return `VCV-${String(n).padStart(4, '0')}`;
+  return `VGV-${String(n).padStart(4, '0')}`;
 }
 
 export async function submit(action, payload) {
@@ -91,7 +91,7 @@ export async function getRequest(token) {
   if (!IS_DEMO) return fn({ action: 'get_request', token });
   const all = store.get('vcv_demo_requests') || {};
   const req = all[token] || {
-    code: 'VCV-0042', kind: 'pedido', status: 'propuestas_enviadas', first_name: 'Cliente',
+    code: 'VGV-0042', kind: 'pedido', status: 'propuestas_enviadas', first_name: 'Cliente',
     filters: { makes: ['BMW'], model: 'Serie 3', year_min: 2020, km_max: 80000, fuels: [] },
     price_min: 22000, price_max: 36000, delivery_city: 'Valencia', created_at: new Date().toISOString(),
   };

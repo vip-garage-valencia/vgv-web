@@ -1,4 +1,4 @@
-// VCV · lógica de precios. Funciones puras: se usan en la web, en el admin y en los tests.
+// VGV · lógica de precios. Funciones puras: se usan en la web, en el admin y en los tests.
 // Todos los importes en euros. Los valores por defecto se pueden sobrescribir desde la tabla settings.
 
 export const DEFAULT_SETTINGS = {
@@ -13,12 +13,12 @@ export const DEFAULT_SETTINGS = {
   vat_es: 0.21,
   // Traslado
   truck_price: { compacto: 1500, medio: 1750, grande: 2000 }, // precio al cliente (servicio suelto)
-  truck_cost: { compacto: 600, medio: 750, grande: 950 },      // coste interno VCV (solo admin)
+  truck_cost: { compacto: 600, medio: 750, grande: 950 },      // coste interno VGV (solo admin)
   rodando_pct: { 1: 0.05, 2: 0.06, 3: 0.07 },                 // por zona de distancia
   rodando_min: 500,
   rodando_below_truck: 300,                                    // rodando siempre <= camión - 300
   // Ofertas con sobreprecio
-  markup_share: 0.375,      // VCV se queda ~35-40% de la diferencia con España
+  markup_share: 0.375,      // VGV se queda ~35-40% de la diferencia con España
   markup_min_pct: 0.03,
   markup_max_pct: 0.07,
   markup_min_eur: 1200,
@@ -85,7 +85,7 @@ export function estimatedSpainPrice(car, s = DEFAULT_SETTINGS) {
   return round(Number(car.price_de_eur) * (1 + s.es_price_factor));
 }
 
-// Oferta: precio VCV todo incluido. Inspección y gestión incluidas; camión a coste.
+// Oferta: precio VGV todo incluido. Inspección y gestión incluidas; camión a coste.
 export function offerPrice(car, s = DEFAULT_SETTINGS, today = new Date()) {
   const seller = Number(car.price_de_eur);
   const size = car.size_class || 'medio';

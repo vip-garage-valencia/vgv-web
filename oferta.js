@@ -14,7 +14,7 @@ if (!o || (!isOfferFresh(o, settings) && !o.is_demo)) {
     <p><a class="btn" href="index.html#ofertas">Ver otras ofertas</a> <a class="btn ghost" href="pedido.html">Búscame uno parecido</a></p></div>`;
 } else {
   const p = offerPrice(o, settings);
-  document.title = `${o.make} ${o.model} ${o.version || ''} · ${eur(p.total)} · VCV`;
+  document.title = `${o.make} ${o.model} ${o.version || ''} · ${eur(p.total)} · VGV`;
   const similar = filtersToQuery({ makes: [o.make], model: o.model, body_types: [o.body_type], fuels: [o.fuel], price_min: Math.round(p.total * 0.85 / 1000) * 1000, price_max: Math.round(p.total * 1.15 / 1000) * 1000 });
   const pct = (x) => `${(x * 100).toFixed(x * 100 % 1 ? 2 : 0).replace('.', ',')}%`;
   main.innerHTML = `
@@ -59,7 +59,7 @@ if (!o || (!isOfferFresh(o, settings) && !o.is_demo)) {
         <p style="margin:6px 0 14px"><span class="save">Ahorras ${eur(p.savings)}</span> <span class="dim mono" style="font-size:13px">vs. ${eur(p.es_price)} aquí</span></p>
         <table class="breakdown">
           <tr><td>Precio del vendedor en Alemania</td><td>${eur(p.seller)}</td></tr>
-          <tr><td>Honorario VCV (${pct(p.markup_pct)}) · inspección y gestión</td><td>${eur(p.markup)}</td></tr>
+          <tr><td>Honorario VGV (${pct(p.markup_pct)}) · inspección y gestión</td><td>${eur(p.markup)}</td></tr>
           <tr><td>Traslado en camión</td><td>${eur(p.transport)}</td></tr>
           <tr><td>ITV de importación, DGT y placas</td><td>${eur(p.fees)}</td></tr>
           <tr><td>Impuesto de matriculación (${pct(p.iedmt_rate)}) <span class="dim">estimado</span></td><td>${eur(p.iedmt)}</td></tr>
@@ -85,7 +85,7 @@ if (!o || (!isOfferFresh(o, settings) && !o.is_demo)) {
         <div class="field"><label for="message">Comentarios</label><textarea id="message" name="message" placeholder="¿Algo que debamos revisar en especial?"></textarea></div>
         <input class="hp" name="website_hp" tabindex="-1" autocomplete="off" aria-hidden="true">
         <label class="check"><input type="checkbox" name="whatsapp_ok" checked> Podéis escribirme por WhatsApp.</label>
-        <label class="check"><input type="checkbox" name="gdpr_consent" required> Acepto la <a href="legal.html#privacidad" target="_blank">política de privacidad</a> y que VCV trate mis datos para gestionar esta reserva.</label>
+        <label class="check"><input type="checkbox" name="gdpr_consent" required> Acepto la <a href="legal.html#privacidad" target="_blank">política de privacidad</a> y que VGV trate mis datos para gestionar esta reserva.</label>
         <label class="check"><input type="checkbox" name="marketing_consent"> Quiero recibir nuevas ofertas por email.</label>
         <div id="msg"></div>
         <button class="btn" type="submit">Enviar reserva <span class="arrow">→</span></button>

@@ -39,15 +39,15 @@ export function mountLayout({ active = '' } = {}) {
   header.innerHTML = `
     ${IS_DEMO ? '<div class="demo-ribbon">MODO DEMO · coches de prueba · los formularios no envían datos reales</div>' : ''}
     <div class="wrap">
-      <a class="brand" href="index.html" aria-label="VCV Vip Cars Valencia, inicio">
-        <img src="logo-vcv.png" alt="VCV" width="100" height="30">
-        <small>VIP · CARS · VALENCIA</small>
+      <a class="brand" href="index.html" aria-label="VGV Vip Garage Valencia, inicio">
+        <img src="logo-vgv.png" alt="VGV" width="100" height="30">
+        <small>VIP · GARAGE · VALENCIA</small>
       </a>
       <button class="menu-btn" aria-expanded="false" aria-controls="nav">MENÚ</button>
       <nav class="nav" id="nav">
         ${NAV.map(([h, l]) => `<a href="${h}" class="${active === l ? 'active' : ''}">${l}</a>`).join('')}
         <a class="btn small" href="pedido.html">Búscame un coche</a>
-        <a class="team-link" href="admin.html" title="Acceso para el equipo VCV">Entrar</a>
+        <a class="team-link" href="admin.html" title="Acceso para el equipo VGV">Entrar</a>
       </nav>
     </div>`;
   document.body.prepend(header);
@@ -62,16 +62,16 @@ export function mountLayout({ active = '' } = {}) {
   footer.innerHTML = `
     <div class="wrap footer-grid">
       <div>
-        <img src="logo-vcv.png" alt="VCV · Vip Cars Valencia" style="height:40px;width:auto;margin-bottom:12px">
+        <img src="logo-vgv.png" alt="VGV · Vip Garage Valencia" style="height:40px;width:auto;margin-bottom:12px">
         <p>Coches alemanes a la carta para toda España: Mercedes-Benz, Audi y BMW inspeccionados en Alemania, importados y entregados matriculados en tu ciudad.</p>
-        <p class="dim">VCV actúa como intermediario entre comprador y vendedor. Las estimaciones de impuestos son orientativas; el presupuesto se cierra tras la inspección.</p>
+        <p class="dim">VGV actúa como intermediario entre comprador y vendedor. Las estimaciones de impuestos son orientativas; el presupuesto se cierra tras la inspección.</p>
       </div>
       <div>
         <b class="muted">Comprar</b>
         <a href="index.html#ofertas">Ofertas</a><a href="pedido.html">Pedido a la carta</a><a href="index.html#servicios">Servicios y tarifas</a><a href="index.html#faq">Preguntas frecuentes</a>
       </div>
       <div>
-        <b class="muted">VCV</b>
+        <b class="muted">VGV</b>
         <a href="vendedores.html">Para concesionarios</a>
         ${CONFIG.email ? `<a href="mailto:${esc(CONFIG.email)}">${esc(CONFIG.email)}</a>` : ''}
         <a href="legal.html#aviso">Aviso legal</a><a href="legal.html#privacidad">Privacidad</a><a href="legal.html#cookies">Cookies</a>
@@ -83,7 +83,7 @@ export function mountLayout({ active = '' } = {}) {
   if (CONFIG.whatsapp) {
     const wa = document.createElement('a');
     wa.className = 'wa';
-    wa.href = `https://wa.me/${CONFIG.whatsapp}?text=${encodeURIComponent('Hola VCV, quiero información sobre un coche')}`;
+    wa.href = `https://wa.me/${CONFIG.whatsapp}?text=${encodeURIComponent('Hola VGV, quiero información sobre un coche')}`;
     wa.target = '_blank';
     wa.rel = 'noopener';
     wa.setAttribute('aria-label', 'Escríbenos por WhatsApp');

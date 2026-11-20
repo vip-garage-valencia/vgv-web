@@ -94,7 +94,7 @@ if (r.kind === 'reserva' && offer) {
     const q = transportQuote(price, size, zone, settings);
     $('#tras').innerHTML = radio('traslado', 'camion', 'En camión', eur(q.truck), 'El coche llega sin sumar kilómetros.') + radio('traslado', 'rodando', 'Conducido', eur(q.rodando), 'Un conductor profesional lo trae por carretera: suma unos 2.000 km.') + radio('traslado', '', 'Lo recojo yo en Alemania', '0 €');
     const t = servicesTotal({ inspeccion: choice.inspeccion || null, gestion: String(choice.gestion) === 'true', traslado: choice.traslado || null }, price, size, zone, settings);
-    $('#totals').innerHTML = (sel ? `<tr><td>Coche en Alemania (lo pagas al vendedor)</td><td>${eur(price)}</td></tr>` : '') + t.lines.map((l) => `<tr><td>${esc(l.label)}</td><td>${eur(l.price)}</td></tr>`).join('') + `<tr class="total"><td>Total servicios VCV</td><td>${eur(t.total)}</td></tr>`;
+    $('#totals').innerHTML = (sel ? `<tr><td>Coche en Alemania (lo pagas al vendedor)</td><td>${eur(price)}</td></tr>` : '') + t.lines.map((l) => `<tr><td>${esc(l.label)}</td><td>${eur(l.price)}</td></tr>`).join('') + `<tr class="total"><td>Total servicios VGV</td><td>${eur(t.total)}</td></tr>`;
     $('#confirm').dataset.total = t.total;
     $$('#cfg input[type=radio]').forEach((i) => i.addEventListener('change', () => { choice[i.name] = i.value; render(); }));
   }
